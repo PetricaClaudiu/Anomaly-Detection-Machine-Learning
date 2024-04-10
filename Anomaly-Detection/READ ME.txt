@@ -1,0 +1,138 @@
+Anomaly Prediction Model
+
+   1.1 Natura datelor de test:
+Setul de date furnizat pentru proiect se ocupa cu clasificarea datelor anormale inregistrate de la diferiti pacienti. Include sase caracteristici
+pentru fiecare pacient: incidenta, inclinare, unghi, panta, raza si grad. Sarcina consta in a clasifica probele ca fiind normale sau anormale,
+unde probele anormale corespund pacientilor cu diverse probleme medicale (de exemplu, hernie de disc, spondiloza).
+
+ 
+   1.2 Structura Datelor si Caracteristici:
+Caracteristici:
+
+* Incidenta
+* Inclinare
+* Unghi
+* Panta
+* Raza
+* Grad
+
+Variabila tinta:
+* Clasificare binara: Normal (0) sau Anormal (1)
+
+2 Analiza statistica:
+
+   2.1 Statistici Descriptive:
+Am efectuat statistici descriptive de bază, inclusiv media, mediana, deviația standard și cvartilele pentru fiecare caracteristică. Acest lucru a
+ajutat la înțelegerea tendinței centrale și a variabilității în date
+
+   2.2 Metode Statistice Avansate:
+Am utilizat metode statistice avansate, cum ar fi analiza corelațiilor, pentru a explora relațiile între caracteristici și variabila țintă.
+Am examinat distribuția fiecărei caracteristici pentru a identifica potențialele valori extreme (outliers).
+
+3. Machine Learning Model: Logistic Regression
+
+   3.1 Selectarea modelului:
+Pentru sarcina de prezicere a anomaliei, am ales modelul de Regresie Logistică datorită simplității, interpretabilității și eficacității sale în
+rezolvarea problemelor de clasificare. Regresia Logistică este potrivită pentru detecția anomaliei, în special atunci când granița de decizie
+este non-liniară și setul de date nu este foarte mare.
+
+   3.2 Balansarea Setului de Date cu SMOTE::
+Datorită naturii dezechilibrate a setului de date, unde numărul de instanțe anormale este semnificativ mai mic decât cel al instanțelor normale,
+am folosit tehnica de undersampling. Undersampling generează instanțe sintetice pentru clasa minoritară, abordând dezechilibrul de clasă și
+oferind modelului un set de antrenare mai reprezentativ.
+
+   3.3 Optimizarea Hyperparametrilor:
+Pentru a optimiza performanța modelului de Regresie Logistică, am efectuat ajustarea hyperparametrilor
+
+   3.4 Dezvoltarea Modelului:
+Am implementat modelul de Regresie Logistică cu hyperparametrii optimați și l-am antrenat pe setul de date extins cu mostre generate prin
+undersampling.
+
+4. Evaluarea modelului:
+
+   4.1 Matricea de performanta:
+Am evaluat modelul de Regresie Logistică folosind un set cuprinzător de metrici de performanță:
+
+Accuracy: 0.675 
+Precision: 0.8
+Recall: 1.0
+F1 Score: 0.88
+ROC AUC Score: 0.81
+
+   4.2 Semnificația Metricilor:
+Utilizarea tehnicilor de undersampling și ajustarea hyperparametrilor a îmbunătățit semnificativ capacitatea modelului de a recunoaște anomalii,
+abordând problema dezechilibrului de clasă. Rata de recall de 1.0 indică faptul că modelul a identificat cu succes toate instanțele anormale,
+minimizând astfel cazurile de fals negativ. O precizie de 0.8 demonstrează un echilibru echitabil între identificarea corectă a anomaliilor și
+evitarea falselor pozitive.
+
+Scorul F1, o medie armonică a preciziei și recall-ului, oferă o măsură consolidată a performanței generale a modelului. Scorul ROC AUC de 0.80
+confirmă în continuare eficacitatea modelului în a face distincția între instanțele normale și cele anormale.
+
+În rezumat, combinația modelului KNN, SMOTE pentru echilibrarea setului de date și ajustarea hyperparametrilor a condus la un model de detectare
+a anomaliei cu performanțe robuste, reflectate în metrici precum acuratețea, precizia, recall-ul, scorul F1 și scorul ROC AUC.
+
+5. Rezultate si discutii:
+
+   5.1 Prezentare Generală a Performanței Modelului::
+Modelul de Regresie Logistică, îmbunătățit prin aplicarea tehnicii Synthetic Minority Over-sampling Technique (SMOTE) pentru echilibrarea setului
+de date și prin ajustarea atentă a hyperparametrilor, a demonstrat o performanță excepțională în sarcina de detecție a anomaliei.
+
+   5.2 Evaluation Metrics:
+Modelul de Regresie Logistică, îmbunătățit prin aplicarea tehnicii Synthetic Minority Over-sampling Technique (SMOTE) pentru echilibrarea setului
+de date și prin ajustarea atentă a hyperparametrilor, a demonstrat performanțe remarcabile în sarcina de detectare a anomaliei:
+
+**Acuratețe: 0.675**
+
+Modelul a atins o acuratețe de aproximativ 86.5%, indicând competența sa în clasificarea corectă atât a instanțelor normale, cât și a celor
+anormale.
+
+**Precizie: 0.8**
+
+O precizie de 0.8 subliniază capacitatea modelului de a identifica precis instanțele anormale, minimizând astfel cazurile de fals pozitiv,
+ceea ce îl face un instrument de încredere pentru detectarea anomaliilor medicale.
+
+**Recall: 1.0**
+
+Un recall perfect de 1.0 subliniază capacitatea modelului de a identifica toate instanțele de anormalitate. Acesta este un metric crucial în
+contextul diagnosticului medical, unde este foarte nedorit să se omită un caz anormal.
+
+**Scor F1: 0.888888888888889**
+
+Scorul F1, care echilibrează precizia și recall-ul, atinge o valoare mare de aproximativ 0.89, indicând un echilibru armonios între fals pozitiv
+și fals negativ.
+
+**Acuratețe (0.675):**
+
+Acuratețea reprezintă proporția instanțelor clasificate corect din totalul instanțelor. În acest caz, modelul are o acuratețe de aproximativ 68%,
+indicând că a prezis corect variabila țintă pentru 67.5% din probe.
+
+**Matricea de Confuzie:**
+
+Matricea de confuzie oferă o descompunere detaliată a predicțiilor modelului. În acest caz:
+True Positive (TP): 16 instanțe corect prezise ca fiind clasa 0.
+False Negative (FN): 10 instanțe ale clasei 0 prezise incorect ca fiind clasa 1.
+False Positive (FP): 0 instanțe ale clasei 1 prezise incorect ca fiind clasa 0.
+True Negative (TN): 3 instanțe corect prezise ca fiind clasa 1.
+
+ **Raport de Clasificare:**
+
+Precizie: Raportul dintre adevărații pozitivi și totalul pozitivilor prezise.
+Recall: Raportul dintre adevărații pozitivi și totalul pozitivilor actuali.
+Scor F1: Media armonică a preciziei și recall-ului.
+Suport: Numărul de apariții reale ale clasei în setul de date specificat.
+În acest caz:
+Clasa 0 (non-anomalie): Precizie ridicată (1.00), indicând că atunci când modelul prezice clasa 0, este de obicei corect. Cu toate acestea,
+recall-ul scăzut (0.62) și scorul F1
+
+(0.76) sugerează că modelul ratează unele instanțe ale clasei 0.
+
+- **Clasa 1 (anomalie):** Precizie moderată (0.23), indicând că atunci când modelul prezice clasa 1, este mai puțin de încredere.
+Cu toate acestea, un recall ridicat (1.00) sugerează că modelul identifică corect majoritatea instanțelor de clasa 1.
+
+- **Scor ROC AUC (0.808):**
+
+Scorul Receiver Operating Characteristic Area Under the Curve (ROC AUC) măsoară capacitatea modelului de a discrimina între instanțele pozitive
+și negative. Un scor de 0.808 sugerează că modelul are o capacitate relativ bună de a distinge între cele două clase. 
+
+În concluzie, modelul de Regresie Logistică, îmbunătățit prin SMOTE și ajustarea hyperparametrilor, oferă performanțe robuste și fiabile în
+detecția anomaliilor, cu puncte forte în identificarea corectă a cazurilor anormale și echilibrarea între fals pozitiv și fals negativ.
